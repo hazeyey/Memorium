@@ -141,7 +141,7 @@ function closeDeleteGraveModal() {
     document.getElementById("deleteModal").style.display = "none";
 }
 
-function confirmDeleteGrave() {
+function confirmDeleteGraveModal() {
     if (deleteId) {
         window.location.href = "delete_grave.php?id=" + deleteId;
     }
@@ -161,7 +161,7 @@ function closeDeleteDeceasedModal() {
     document.getElementById("deleteModal2").style.display = "none";
 }
 
-function confirmDeleteDeceased() {
+function confirmDeleteDeceasedModal() {
     if (deleteDeceasedId) {
         window.location.href = "delete_deceased.php?id=" + deleteDeceasedId;
     }

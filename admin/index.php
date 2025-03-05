@@ -516,39 +516,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </body>
 </html>
 
-<script>
-function openDeleteGraveModal(graveId) {
-    document.getElementById("deleteModal").style.display = "block";
-    document.getElementById("deleteModal").setAttribute("data-id", graveId);
-}
 
-function closeDeleteGraveModal() {
-    document.getElementById("deleteModal").style.display = "none";
-}
-
-function confirmDeleteGraveModal() {
-    var graveId = document.getElementById("deleteModal").getAttribute("data-id");
-    if (graveId) {
-        window.location.href = "delete_grave.php?id=" + graveId;
-    }
-}
-</script>
-
-
-<script>
-function openDeleteDeceasedModal(deceasedId) {
-    document.getElementById("deleteModal2").style.display = "block";
-    document.getElementById("deleteModal2").setAttribute("data-id", deceasedId);
-}
-
-function closeDeleteDeceasedModal() {
-    document.getElementById("deleteModal2").style.display = "none";
-}
-
-function confirmDeleteDeceasedModal() {
-    var deceasedId = document.getElementById("deleteModal2").getAttribute("data-id");
-    if (deceasedId) {
-        window.location.href = "delete_deceased.php?id=" + deceasedId;
-    }
-}
-</script>
