@@ -106,6 +106,8 @@ function showSection(sectionId) {
     document.getElementById(sectionId).style.display = 'block';
 }
 
+
+
 // ==============================
 // SEARCH FUNCTIONALITY
 // ==============================
@@ -176,6 +178,9 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = "admin-login.php";  
     });
 });
+
+
+
 
 
 

@@ -50,65 +50,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <script src="cemetery.js"></script>
     <script src="viewDeceased.js"></script>
     <script src="updateFileName.js"></script>
+    <script src="side-active.js"></script> 
+   
     
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="logo-details">
-            <div class="logo_name">Memorium</div>
-            <i class='bx bx-menu' id="btn"></i>
-        </div>
-        <ul class="nav-list">
-
-            <li>
-                <a href="#" onclick="showSection('dashboard')">
-                    <i class='bx bxs-dashboard'></i>
-                    <span class="links_name">Dashboard</span>
-                </a>
-                <span class="tooltip">Dashboard</span>
-            </li>
-            <li>
-                <a href="#" onclick="showSection('grave')">
-                <i class='bx bxs-folder-plus'></i>
-                    <span class="links_name">Grave</span>
-                </a>
-                <span class="tooltip">Grave</span>
-            </li>
-            <li>
-                <a href="#" onclick="showSection('deceased')">
-                <i class='bx bxs-folder-open'></i>
-                    <span class="links_name">Deceased</span>
-                </a>
-                <span class="tooltip">Deceased</span>
-            </li>
-            
-
-            <!-- Profile -->
-            <li class="profile">
-                <div class="profile-details">
-                    <img src="css/image/profile.png" alt="profileImg">
-                    <div class="name_job">
-                        <div class="name">Memorium</div>
-                        <div class="job">Cemetery Find</div>
-                    </div>
-                </div>
-                <i class='bx bx-log-out' id="log_out" style="cursor: pointer;" onclick="logoutUser()"></i>
-
-                <script>
-                function logoutUser() {
-                    localStorage.clear();
-                    sessionStorage.clear();
-                    window.location.href = "login.html";
-                }
-                </script>
-
-            </li>
-        </ul>
-    </div>
+<?php include 'includes/sidebar.php'; ?>
 
     <!-- Dashboard -->
     <section id="dashboard" class="home-section">
@@ -228,6 +178,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <button onclick="closeDeleteGraveModal()" class="cancel-btn">Cancel</button>
     </div>
 </div>
+
+
 <!-- EDIT MODAL GRAVE -->
 <div id="editGraveModal" class="modal">
     <div class="modal-content">
@@ -246,6 +198,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </form>
     </div>
 </div>
+
+
 <!-- Display List of Deceased -->
 <section id="deceased" class="deceased-section" style="display: none;">
 <div class="table-container">
@@ -285,6 +239,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     data-obituary="<?php echo htmlspecialchars($person['obituary']); ?>">
     Edit
 </button>
+
+
 <!-- Delete by deceased_id -->
 <button class="delete-btn" onclick="openDeleteDeceasedModal(<?php echo $person['deceased_id']; ?>)">Delete</button>
 
@@ -316,6 +272,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     </div>
 </div>
+
+
 <!-- Delete Deceased Confirmation Modal -->
 <div id="deleteModal2" class="modal">
     <div class="modal-content">
@@ -326,6 +284,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <button onclick="closeDeleteDeceasedModal()" class="cancel-btn">Cancel</button>
     </div>
 </div>
+
+
    <!-- EDIT MODAL DECEASED -->
 <div id="editDeceasedModal" class="modal">
     <div class="modal-content">
@@ -354,6 +314,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     </div>
 </div>
+
+
     <!-- Modal ADD GRAVE -->
 <div id="addGraveModal" class="modal">
     <div class="modal-content">
@@ -374,6 +336,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 </div>
 
+
+
 <!-- ADD GRAVE Success Message Popup -->
 <div id="addGraveSuccess" class="modal" style="display: none;">
     <div class="modal-content">
@@ -382,6 +346,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <p>Grave Added successfully.</p>
     </div>
 </div>
+
+
 <!-- ADD GRAVE Failed Message Popup -->
 <div id="addGraveFailed" class="modal" style="display: none;">
     <div class="modal-content">
@@ -390,6 +356,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <p>Grave Already Exist. Please try again.</p>
     </div>
 </div>
+
+
 <!-- Modal ADD DECEASED -->
 <div id="addDeceasedModal" class="modal">
     <div class="modal-content">
@@ -468,6 +436,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <p>Grave details successfully updated.</p>
     </div>
 </div>
+
+
 <!-- EDIT DECEASED Success Message Popup -->
 <div id="editDeceasedSuccess" class="modal" style="display: none;">
     <div class="modal-content">
@@ -476,6 +446,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <p>Deceased details successfully updated.</p>
     </div>
 </div>
+
 <!-- DELETE GRAVE Success Message Popup -->
 <div id="deleteGraveSuccess" class="modal" style="display: none;">
     <div class="modal-content">
@@ -484,6 +455,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <p>Grave record successfully deleted.</p>
     </div>
 </div>
+
 <!-- DELETE GRAVE Failed Message Popup -->
 <div id="deleteGraveFailed" class="modal" style="display: none;">
     <div class="modal-content">
@@ -492,6 +464,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <p>Cannot delete. This grave is assigned to a deceased individual.</p>
     </div>
 </div>
+
+
 <!-- DELETE DECEASED Success Message Popup -->
 <div id="deleteDeceasedSuccess" class="modal" style="display: none;">
     <div class="modal-content">
@@ -501,7 +475,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 </div>
 
-<!-- UPLOAD Failed Message Popup -->
+  <!-- UPLOAD Failed Message Popup -->
 <div id="uploadFailed" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close" onclick="document.getElementById('uploadFailed').style.display='none'">&times;</span>
@@ -519,7 +493,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 </div>
 
+
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
 
 
