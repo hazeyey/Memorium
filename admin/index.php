@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <th>Last Name</th>
                 <th>Birth Date</th>
                 <th>Death Date</th>
-                <th>Obituary</th>
+                <th>Incription</th>
                 <th>Grave Location</th>
             </tr>
         </thead>
@@ -170,6 +170,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </table>
 </section>
 </section>
+
+
+
 <!-- Display List of Graves -->
     <section id="grave" class="grave-section" style="display: none;" >
     <h2>List of Graves</h2>
@@ -212,6 +215,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </tbody>
 </table>
 </section>
+
+
+
 <!-- Delete Grave Modal -->
 <div id="deleteModal" class="modal">
     <div class="modal-content">
@@ -252,7 +258,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <th>Last Name</th>
             <th>Birth Date</th>
             <th>Death Date</th>
-            <th>Obituary</th>
+            <th>Incription</th>
             <th>Grave Location</th>
             <th>Actions</th>
         </tr>
@@ -303,7 +309,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <p><strong>Last Name:</strong> <span id="viewLastName"></span></p>
             <p><strong>Birth Date:</strong> <span id="viewBirthDate"></span></p>
             <p><strong>Death Date:</strong> <span id="viewDeathDate"></span></p>
-            <p><strong>Obituary:</strong> <span id="viewObituary"></span></p>
+            <p><strong>Incription:</strong> <span id="viewObituary"></span></p>
             <p><strong>Grave Location:</strong> <span id="viewGraveLocation"></span></p>
             <p><strong>Death Certificate:</strong></p>
             <img id="viewDeathCertificate" src="" alt="Death Certificate" style="max-width: 100%; display: none;">
@@ -340,7 +346,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <label>Death Date:</label>
     <input type="date" name="death_date" id="editDeathDate" required>
 
-    <label>Obituary:</label>
+    <label>Incription:</label>
     <textarea name="obituary" id="editObituary"></textarea>
 
     <button type="submit" name="update_deceased">Save Changes</button>
@@ -402,7 +408,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <label>Death Date:</label>
     <input type="date" name="death_date" required>
 
-    <label>Obituary:</label>
+    <label>Incription:</label>
     <textarea name="obituary"></textarea>
 
     <h3>Assign Grave</h3>
