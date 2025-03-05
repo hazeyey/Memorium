@@ -1,10 +1,9 @@
 <?php
-
 // Enable error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Classes for Email Handling
+// PHPMailer Classes
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -13,22 +12,23 @@ require_once __DIR__ . '/phpmailer/src/Exception.php';
 require_once __DIR__ . '/phpmailer/src/PHPMailer.php';
 require_once __DIR__ . '/phpmailer/src/SMTP.php';
 
-if (isset($_POST['send'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['send'])) {
     try {
         $mail = new PHPMailer(true);
-
-        // SMTP Debugging (0 = off, 1 = client messages, 2 = client and server messages)
-        $mail->SMTPDebug = 0;
         
-        // SMTP Settings
-        $mail->isSMTP();      
+        // Enable full debugging (set to 0 when not debugging)
+        $mail->SMTPDebug = 0;  
+
+        // SMTP Configuration
+        $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'memorium478844@gmail.com'; 
-        $mail->Password = 'bxjk hqhs ormw rewq';  // Consider using an App Password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
+        $mail->Username = 'memorium478844@gmail.com';
+        $mail->Password = 'yntp szof pwob kpml';  // Use an App Password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
-        
+
+        // Prevent SSL verification issues
         $mail->SMTPOptions = [
             'ssl' => [
                 'verify_peer' => false,
@@ -37,30 +37,38 @@ if (isset($_POST['send'])) {
             ]
         ];
 
+        // Sanitize & Validate Inputs
+        $sender_name = htmlspecialchars(trim($_POST['name']));
+        $recipient_email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+        $subject = htmlspecialchars(trim($_POST['subject']));
+        $message = nl2br(htmlspecialchars(trim($_POST['message'])));
+
+        if (!filter_var($recipient_email, FILTER_VALIDATE_EMAIL)) {
+            throw new Exception("Invalid Email Address!");
+        }
+
         // Email Configuration
         $mail->setFrom('memorium478844@gmail.com', 'Memorium');
-        $mail->addAddress($_POST['email']); 
+        $mail->addAddress($recipient_email);
         $mail->isHTML(true);
-        $mail->Subject = $_POST['subject'];
-        $mail->Body = $_POST['message'];
+        $mail->Subject = $subject;
+        $mail->Body = "<p><strong>Sender Name:</strong> {$sender_name}</p><p><strong>Message:</strong>{$message}</p>";
 
-        // Send Email
+        // Send Email & Handle Response
         if ($mail->send()) {
             echo '<script>
-                    alert("Sent Successfully");
-                    window.history.back(); // Stay on the same page
+                    alert("Email Sent Successfully!");
+                    window.location.href = document.referrer;
                   </script>';
         } else {
-            echo '<script>
-                    alert("Mail not sent: ' . $mail->ErrorInfo . '");
-                    window.history.back(); // Stay on the same page
-                  </script>';
+            throw new Exception("Mail Sending Failed: " . $mail->ErrorInfo);
         }
     } catch (Exception $e) {
         echo '<script>
-                alert("Error: ' . $e->getMessage() . '");
-                window.history.back();
+                alert("Error: ' . addslashes($e->getMessage()) . '");
+                window.location.href = document.referrer;
               </script>';
     }
 }
 ?>
+

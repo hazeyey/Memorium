@@ -106,11 +106,13 @@
 
         <!-- Modified form -->
         <form action="ForEmail/email.php" method="POST" class="contact-form">
-    <input type="text" name="name" placeholder="Your Name" class="form-input" required>
-    <input type="email" name="email" placeholder="Recipient Email" class="form-input" required> <!-- Added email field -->
-    <input type="text" name="subject" placeholder="Subject" class="form-input" required> <!-- Fixed type -->
-    <textarea name="message" placeholder="Your Message" class="form-input" required></textarea>
-    <button type="submit" name="send" class="submit-button">Send Message</button> <!-- Added name="send" -->
+ 
+        <input type="text" name="name" placeholder="Your Name" class="form-input" required>
+        <input type="email" name="email" placeholder="Recipient Email" class="form-input" value="memorium478844@gmail.com" readonly required> <!-- Added email field -->
+        <input type="text" name="subject" placeholder="Subject" class="form-input" required> <!-- Fixed type -->
+        <textarea name="message" placeholder="Your Message" class="form-input" required></textarea>
+    
+        <button type="submit" name="send" class="submit-button">Send Message</button> <!-- Added name="send" -->
 </form>
 
     </div>

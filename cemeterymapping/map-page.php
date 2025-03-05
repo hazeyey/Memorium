@@ -80,13 +80,14 @@ if ($result->num_rows > 0) {
 <!-- MAP SECTION -->
 <section id="map" class="map-section">
     <div class="section-content">
-        
+        <h2>Section A</h2>
         <!-- Grid Display for Graves -->
         <div class="grid">
             <?php foreach ($graves as $grave): ?>
                 <div class="grave <?php echo strtolower($grave['status']); ?>" 
                      onclick="alert('Grave ID: <?php echo $grave['grave_id']; ?>')" 
                      data-name="<?php echo htmlspecialchars($grave['first_name'] . ' ' . $grave['last_name']); ?>">
+                     
                 </div>
             <?php endforeach; ?>
         </div>

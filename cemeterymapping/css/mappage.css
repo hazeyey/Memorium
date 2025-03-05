@@ -91,6 +91,9 @@ img{
     background: var(--secondary-color);
 }
 
+.section-content h2 {
+    text-align: center;
+}
 
 /* navbar stylings */
 
