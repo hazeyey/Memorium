@@ -2,14 +2,18 @@
 include 'db/db.php';
 
 function fetchGraves($conn) {
+  
     $sql = "SELECT g.grave_id, g.section, g.block_number, g.lot_number, g.status, 
                    d.first_name, d.last_name
             FROM graves g
             LEFT JOIN deceased d ON g.grave_id = d.grave_id
+            WHERE g.deleted_at IS NULL  
             ORDER BY g.grave_id ASC";  
+
     $result = $conn->query($sql);
     return ($result->num_rows > 0) ? $result->fetch_all(MYSQLI_ASSOC) : [];
 }
+
 
 
 function fetchDeceased($conn) {
@@ -17,24 +21,27 @@ function fetchDeceased($conn) {
                    g.grave_id, g.section, g.block_number, g.lot_number, g.status
             FROM deceased d
             LEFT JOIN graves g ON d.grave_id = g.grave_id
+            WHERE d.deleted_at IS NULL  -- Exclude soft-deleted records
             ORDER BY g.grave_id ASC";
     $result = $conn->query($sql);
     return ($result->num_rows > 0) ? $result->fetch_all(MYSQLI_ASSOC) : [];
 }
 
 
+
 function getTotalGraves($conn) {
-    $sql = "SELECT COUNT(*) AS total_graves FROM graves";
+    $sql = "SELECT COUNT(*) AS total_graves FROM graves WHERE deleted_at IS NULL";
     $result = $conn->query($sql);
     return ($result->num_rows > 0) ? $result->fetch_assoc()['total_graves'] : 0;
 }
 
 
 function getTotalDeceased($conn) {
-    $sql = "SELECT COUNT(*) AS total_deceased FROM deceased";
+    $sql = "SELECT COUNT(*) AS total_deceased FROM deceased WHERE deleted_at IS NULL";  
     $result = $conn->query($sql);
     return ($result->num_rows > 0) ? $result->fetch_assoc()['total_deceased'] : 0;
 }
+
 
 function addDeceased($conn, $postData, $fileData) {
     if (!isset($postData['add_deceased'])) {
@@ -50,7 +57,7 @@ function addDeceased($conn, $postData, $fileData) {
     $lot_number = $conn->real_escape_string($postData['lot_number']);
 
    
-    $grave_query = "SELECT grave_id, status FROM graves WHERE section = '$section' AND block_number = '$block_number' AND lot_number = '$lot_number'";
+    $grave_query = "SELECT grave_id, status, deleted_at FROM graves WHERE section = '$section' AND block_number = '$block_number' AND lot_number = '$lot_number' AND deleted_at IS NULL";
     $result = $conn->query($grave_query);
 
     if ($result->num_rows === 0) {
@@ -105,19 +112,27 @@ function addGrave($conn, $section, $block_number, $lot_number) {
     $block_number = $conn->real_escape_string($block_number);
     $lot_number = $conn->real_escape_string($lot_number);
 
-  
-    $check_sql = "SELECT * FROM graves WHERE section = '$section' AND block_number = '$block_number' AND lot_number = '$lot_number'";
+   
+    $check_sql = "SELECT * FROM graves WHERE section = '$section' AND block_number = '$block_number' AND lot_number = '$lot_number' AND (deleted_at IS NULL OR deleted_at IS NOT NULL)";
     $check_result = $conn->query($check_sql);
 
     if ($check_result->num_rows > 0) {
-        return "addGraveFailed"; 
+     
+        $update_sql = "UPDATE graves SET deleted_at = NULL, status = 'available' WHERE section = '$section' AND block_number = '$block_number' AND lot_number = '$lot_number'";
+        if ($conn->query($update_sql) === TRUE) {
+            return "addGraveSuccess";
+        } else {
+            return "addGraveFailed";
+        }
     } 
 
+   
     $sql = "INSERT INTO graves (section, block_number, lot_number, status) 
             VALUES ('$section', '$block_number', '$lot_number', 'available')";
 
     return ($conn->query($sql) === TRUE) ? "addGraveSuccess" : "addGraveFailed";
 }
+
 
 function editGrave($conn) {
     
