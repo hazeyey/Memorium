@@ -189,10 +189,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="text" name="section" value="<?php echo isset($grave['section']) ? $grave['section'] : ''; ?>" required>
             <input type="text" name="block_number" value="<?php echo isset($grave['block_number']) ? $grave['block_number'] : ''; ?>" required>
             <input type="text" name="lot_number" value="<?php echo isset($grave['lot_number']) ? $grave['lot_number'] : ''; ?>" required>
-            <select name="status">
-                <option value="available" <?php if (isset($grave['status']) && $grave['status'] == "available") echo "selected"; ?>>Available</option>
-                <option value="taken" <?php if (isset($grave['status']) && $grave['status'] == "taken") echo "selected"; ?>>Taken</option>
-            </select>
             <button type="submit" name="update_grave">Update Grave</button>
         </form>
     </div>
@@ -496,7 +492,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 </body>
 </html>
-
 
 
 

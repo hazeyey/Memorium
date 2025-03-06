@@ -6,6 +6,7 @@
     <title>Memorium - Cemetery Find</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
     <link rel="stylesheet" href="css/homepage.css">     
     
 </head>
@@ -108,15 +109,15 @@
             </li>
         </ul>
 
-        <!-- Contact Us Form -->
+     
         <form action="ForEmail/email.php" method="POST" class="contact-form">
  
         <input type="text" name="name" placeholder="Your Name" class="form-input" required>
-        <input type="email" name="email" placeholder="Recipient Email" class="form-input" value="memorium478844@gmail.com" readonly required> <!-- Added email field -->
-        <input type="text" name="subject" placeholder="Subject" class="form-input" required> <!-- Fixed type -->
+        <input type="email" name="email" placeholder="Recipient Email" class="form-input" value="memorium478844@gmail.com" hidden readonly required>
+        <input type="text" name="subject" placeholder="Subject" class="form-input" required> 
         <textarea name="message" placeholder="Your Message" class="form-input" required></textarea>
     
-        <button type="submit" name="send" class="submit-button">Send Message</button> <!-- Added name="send" -->
+        <button type="submit" name="send" class="submit-button">Send Message</button> 
 </form>
 
     </div>
@@ -127,8 +128,11 @@
     <footer class="footer">
         <div class="footer-content">
             <p>&copy; 2025 Memorium Cemetery Mapping. All rights reserved.</p>
-            <p>Developed by <a href="https://github.com/hazeyey" target="_blank">Nazlah Nanding and Hazeljoy Hingpit</a></p>
-            
+            <p>Developed by <a href="https://github.com/yourprofile" target="_blank">Nazlah Nanding and Hazeljoy Hingpit</a></p>
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
         </div>
     </footer>
 </main>

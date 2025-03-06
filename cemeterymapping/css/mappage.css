@@ -133,7 +133,6 @@ header .navbar {
 .navbar .nav-menu {
     display: flex;
     gap: 10px;
-    align-items: center;
 }
 
 .navbar .nav-menu .nav-link {
@@ -168,6 +167,9 @@ header .navbar {
 .nav-menu .admin-button:hover .admin-icon {
     transform: scale(1.1); 
 }
+
+
+
 
 /* MAP STYLING */
 
@@ -578,28 +580,49 @@ header .navbar {
 }
    
 }
-
-
-/* Tooltip Styling */
-.grave-tooltip {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.85);
-    color: white;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    white-space: nowrap;
-    pointer-events: none;
+.modal {
+    display: none; 
+    position: fixed;
     z-index: 1000;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
 }
 
-/* Highlight Available Graves on Hover */
-.grave:hover {
-    box-shadow: 0 0 15px yellow;
-    transform: scale(1.1);
-    transition: all 0.2s ease-in-out;
+
+.modal-content {
+    width: 100%;
+    max-width: 400px;
+    background: #f9f9f9;
+    margin: 5% auto; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+}
+
+.close-btn:hover {
+    color: #ff0000;
+}
+
+
+
+
 
 
 

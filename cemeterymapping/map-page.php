@@ -1,11 +1,19 @@
 <?php
 include 'db.php';
 
-// Fetch graves for visual representation
-$sql = "SELECT g.grave_id, g.status, d.first_name, d.last_name
+
+
+$sql = "SELECT g.grave_id, g.status, 
+               COALESCE(d.first_name, '') AS first_name, 
+               COALESCE(d.last_name, '') AS last_name,
+               g.section, g.block_number, g.lot_number
         FROM graves g
-        LEFT JOIN deceased d ON g.grave_id = d.grave_id
-        ORDER BY g.grave_id ASC";  
+        LEFT JOIN deceased d ON g.grave_id = d.grave_id 
+            AND (d.deleted_at IS NULL OR d.deleted_at = '') 
+        WHERE g.deleted_at IS NULL OR g.deleted_at = ''
+        ORDER BY g.grave_id ASC";
+
+
 $result = $conn->query($sql);
 $graves = [];
 if ($result->num_rows > 0) {
@@ -14,11 +22,11 @@ if ($result->num_rows > 0) {
     }
 }
 
-// Fetch all deceased individuals
 $sql = "SELECT d.deceased_id, d.first_name, d.last_name, d.birth_date, d.death_date, d.obituary, 
                g.grave_id, g.section, g.block_number, g.lot_number, g.status
         FROM deceased d
         LEFT JOIN graves g ON d.grave_id = g.grave_id
+        WHERE d.deleted_at IS NULL AND g.deleted_at IS NULL
         ORDER BY g.grave_id ASC";
 $result = $conn->query($sql);
 $deceasedList = [];
@@ -28,6 +36,7 @@ if ($result->num_rows > 0) {
         $deceasedList[] = $row;
     }
 }
+
 ?>
 
 
@@ -41,6 +50,12 @@ if ($result->num_rows > 0) {
        
 
     <link rel="stylesheet" href="css/mappage.css">    
+    <script src="searchTable.js" defer></script>
+    <script src="script.js"></script>
+   
+   
+
+
 </head>
 <body>
 
@@ -88,14 +103,50 @@ if ($result->num_rows > 0) {
         <h2>Section A</h2>
         <div class="grid">
             <?php foreach ($graves as $grave): ?>
+                <?php
+                // Find the matching deceased record based on grave_id
+                $deceased = null;
+                foreach ($deceasedList as $person) {
+                    if ($person['grave_id'] == $grave['grave_id']) {
+                        $deceased = $person;
+                        break;
+                    }
+                }
+                ?>
                 <div class="grave <?php echo strtolower($grave['status']); ?>" 
-                     onclick="alert('Grave ID: <?php echo $grave['grave_id']; ?>')" 
-                     data-name="<?php echo strtolower(htmlspecialchars($grave['first_name'] . ' ' . $grave['last_name'])); ?>">
+                     onclick="openModal('<?php echo $grave['grave_id']; ?>', 
+                                       '<?php echo htmlspecialchars($grave['first_name'] . ' ' . $grave['last_name']); ?>',
+                                        '<?php echo htmlspecialchars($grave['section'] . '- Block ' . $grave['block_number'] . ' Lot ' . $grave['lot_number']); ?>', 
+                                        '<?php echo $deceased ? htmlspecialchars($deceased['birth_date']) : ''; ?>', 
+                                        '<?php echo $deceased ? htmlspecialchars($deceased['death_date']) : ''; ?>', 
+                                        '<?php echo $deceased ? htmlspecialchars($deceased['obituary']) : ''; ?>')"
+                     data-name="<?php echo strtolower(htmlspecialchars($grave['first_name'] . ' ' . $grave['last_name'])); ?>"
+                     data-location="<?php echo strtolower(htmlspecialchars($grave['section'] . ' Block ' . $grave['block_number'] . ' Lot ' . $grave['lot_number'])); ?>">
                 </div>
             <?php endforeach; ?>
         </div>
     </div>
 </section>
+
+<!-- GRAVE DETAILS MODAL -->
+<div id="graveModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>Grave Details</h2>
+        <p><strong>Name: </strong><span id="grave-name"></span></p>
+        <p><strong>Location: </strong><span id="grave-location"></span></p>
+       
+        <p><strong>Date of Birth: </strong><span id="grave-dob"></span></p>
+        <p><strong>Date of Death: </strong><span id="grave-dod"></span></p>
+        <p><strong>Inscriptions: </strong><span id="grave-inscription"></span></p>
+    </div>
+</div>
+
+
+
+
+
+
 
 
 
@@ -139,14 +190,42 @@ if ($result->num_rows > 0) {
 <!-- FOOTER SECTION -->
 <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2025 Memorium Cemetery Mapping. All rights reserved.</p>
-            <p>Developed by <a href="https://github.com/hazeyey" target="_blank">Nazlah Nanding and Hazeljoy Hingpit</a></p>
-            
+            <p>&copy; 2024 Memorium Cemetery Mapping. All rights reserved.</p>
+            <p>Developed by <a href="https://github.com/yourprofile" target="_blank">Nazlah Nanding and Hazeljoy Hingpit</a></p>
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
     </footer>
 
 
-<script src="searchTable.js"></script>    
-<script src="script.js"></script>
+<script>
+// Open modal with grave details
+function openModal(graveId, name, location, dob, dod, inscription) {
+    
+    document.getElementById('grave-name').innerText = name;
+    document.getElementById('grave-location').innerText = location;
+    document.getElementById('grave-dob').innerText = dob;
+    document.getElementById('grave-dod').innerText = dod;
+    document.getElementById('grave-inscription').innerText = inscription;
+    document.getElementById('graveModal').style.display = 'block';
+}
+
+// Close modal
+function closeModal() {
+    document.getElementById('graveModal').style.display = 'none';
+}
+
+// Close modal when clicking outside the modal content
+window.onclick = function(event) {
+    if (event.target == document.getElementById('graveModal')) {
+        closeModal();
+    }
+}
+
+</script>
+
+
 
 </body>
 </html>

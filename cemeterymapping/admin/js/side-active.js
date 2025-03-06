@@ -1,18 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".sidebar li a").forEach(link => {
         link.addEventListener("click", function (event) {
-            event.preventDefault();
-
             let sectionId = this.getAttribute("data-section");
 
-            document.querySelectorAll('.home-section, .grave-section, .deceased-section, .modal')
-                .forEach(section => section.style.display = 'none');
+            // Only prevent default and toggle visibility if data-section exists
+            if (sectionId) {
+                event.preventDefault();
 
-            document.getElementById(sectionId).style.display = 'block';
+                let section = document.getElementById(sectionId);
 
-            document.querySelectorAll(".sidebar li a").forEach(link => link.classList.remove("active"));
+                if (section) {
+                    document.querySelectorAll('.home-section, .grave-section, .deceased-section, .modal')
+                        .forEach(sec => sec.style.display = 'none');
 
-            this.classList.add("active");
+                    section.style.display = 'block';
+
+                    document.querySelectorAll(".sidebar li a").forEach(link => link.classList.remove("active"));
+                    this.classList.add("active");
+                }
+            }
+            // If no sectionId, allow normal page navigation
         });
     });
 });
