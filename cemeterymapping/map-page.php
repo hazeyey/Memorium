@@ -71,6 +71,11 @@ if ($result->num_rows > 0) {
             <li class="nav-item">
                 <a href="homepage.php#contact" class="nav-link">Contact</a>
             </li>
+            <li class="nav-item">
+            <a href="admin/admin-login.php" class="nav-link admin-button">
+                    <img src="css/image/admin.png" alt="Admin" class="admin-icon">
+                </a>            
+            </li>
         </ul>
         <button id="menu-open-button" class="fas fa-bars"></button>
     </nav>
