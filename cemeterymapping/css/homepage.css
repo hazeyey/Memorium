@@ -19,7 +19,6 @@ body {
     min-height: 100vh;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
@@ -135,10 +134,11 @@ header .navbar {
     margin-right: 8px; 
 }
 
-
 .navbar .nav-menu {
     display: flex;
     gap: 10px;
+    align-items: center;
+    
 }
 
 .navbar .nav-menu .nav-link {
@@ -157,6 +157,23 @@ header .navbar {
 .navbar :where(#menu-close-button, #menu-open-button) {
     display: none;
 }
+
+.nav-menu .admin-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-menu .admin-button .admin-icon {
+    width: 25px; 
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.nav-menu .admin-button:hover .admin-icon {
+    transform: scale(1.1); 
+}
+
 
 /* HERO SECTION */
 
@@ -245,7 +262,6 @@ header .navbar {
     overflow-y: auto; 
     height: auto;
 }
-
 
 .grid {
     display: grid;
@@ -364,7 +380,6 @@ p {
 
 
 /* ABOUT US */
-
 .about-section {
     padding: 120px 0;
     background: #ffffff;
@@ -407,9 +422,7 @@ p {
 }
 
 
-
 /* CONTACT */
-
 .contact-section {
     background: var(--primary-color);
     padding: 50px 0 100px;
@@ -437,16 +450,15 @@ p {
 }
 
 .contact-info i {
-    font-size: 20px; /* Adjust icon size */
-    min-width: 24px; /* Ensures icons are aligned */
+    font-size: 20px; 
+    min-width: 24px; 
     text-align: center;
 }
 
 .contact-info p {
     color: var(--dark-color);
-    margin: 0; /* Removes default margin */
+    margin: 0; 
 }
-
 
 .contact-section .contact-form .form-input {
     width: 100%;
@@ -510,7 +522,6 @@ p {
 
 
 /* FOOTER */
-
 .footer {
     background-color:var(--dark-color); 
     color: white; 

@@ -198,6 +198,17 @@ header .navbar {
     background-color: #f24a4a;
 }
 
+/* Glowing effect for the selected grave */
+.highlight-grave {
+    animation: glow 1.5s ease-in-out alternate infinite;
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 10px yellow; transform: scale(1.1); }
+    100% { box-shadow: 0 0 20px orange; transform: scale(1); }
+}
+
+
 .grave:hover::after {
     content: attr(data-name);
     position: absolute;
@@ -212,6 +223,18 @@ header .navbar {
     white-space: nowrap;
 }
 
+/* Tooltip styling */
+.grave-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    pointer-events: none; /* Prevents interaction with the tooltip */
+    z-index: 1000;
+}
 
 
 /* List Section */
@@ -220,7 +243,7 @@ header .navbar {
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
-    text-align: center;  /* Center text inside the section */
+    text-align: center;  
 }
 
 /* Heading */
@@ -258,8 +281,8 @@ header .navbar {
 
 /* Centering Table */
 #deceasedTable {
-    margin: 0 auto;  /* Centers the table horizontally */
-    width: 100%;      /* Adjust width as needed */
+    margin: 0 auto;  
+    width: 100%;      
     border-collapse: collapse;
     margin-top: 10px;
 }
@@ -295,15 +318,14 @@ header .navbar {
 
 
 /* FOOTER STYLING */
-
 .footer {
-    background-color: var(--dark-color); /* Ensures the background is black */
-    color: white; /* Text color */
+    background-color: var(--dark-color);
+    color: white; 
     text-align: center;
     padding: 20px 0;
     font-size: 14px;
     width: 100%;
-    position: relative; /* Change to 'fixed' if you want it always at the bottom */
+    position: relative; 
     bottom: 0;
 }
 
@@ -409,7 +431,7 @@ header .navbar {
     background: #f9f9f9;
     overflow-y: auto; 
     height: auto;
-    text-align: center;  /* Ensures the map section content is centered */
+    text-align: center;  
 }
 
 /* Grid Layout for Graves */
@@ -466,7 +488,7 @@ header .navbar {
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
-    text-align: center;  /* Center text inside the section */
+    text-align: center;  
 }
 
 /* Heading */
@@ -504,8 +526,8 @@ header .navbar {
 
 /* Table Styling */
 #deceasedTable {
-    margin: 0 auto;  /* Centers the table horizontally */
-    width: 100%;      /* Adjust width as needed */
+    margin: 0 auto;  
+    width: 100%;      
     border-collapse: collapse;
     margin-top: 10px;
 }
@@ -538,9 +560,7 @@ header .navbar {
 #deceasedTable tr:hover {
     background-color: #e0e0e0;
 }
-
-
-    
+   
 }
 
 
