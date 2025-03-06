@@ -1,7 +1,7 @@
 <?php //MAIN 
 
 include 'db/db.php';
-include 'functions.php';
+include 'includes/functions.php';
 
 $graves = fetchGraves($conn);
 $deceasedList = fetchDeceased($conn);
@@ -46,11 +46,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
  
     <link rel="stylesheet" href="css/style.css">
 
-    <script src="sidebar-nav.js" defer></script>
-    <script src="cemetery.js"></script>
-    <script src="viewDeceased.js"></script>
-    <script src="updateFileName.js"></script>
-    <script src="side-active.js"></script> 
+    <script src="js/sidebar-nav.js" defer></script>
+    <script src="js/cemetery.js"></script>
+    <script src="js/viewDeceased.js"></script>
+    <script src="js/updateFileName.js"></script>
+    <script src="js/side-active.js"></script> 
    
     
 
@@ -122,6 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </section>
 
 
+<!------------------------------------------ GRAVE------------------------------------------>
 
 <!-- Display List of Graves -->
     <section id="grave" class="grave-section" style="display: none;" >
@@ -166,8 +167,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </table>
 </section>
 
-
-
 <!-- Delete Grave Modal -->
 <div id="deleteModal" class="modal">
     <div class="modal-content">
@@ -199,6 +198,50 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 </div>
 
+    <!-- Modal ADD GRAVE -->
+<div id="addGraveModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Add Grave</h3>
+        <form action="" method="POST">
+            <label>Section:</label>
+            <input type="text" name="section" required>
+
+            <label>Block Number:</label>
+            <input type="text" name="block_number" required>
+
+            <label>Lot Number:</label>
+            <input type="text" name="lot_number" required>
+
+            <button type="submit" name="add_grave">Add Grave</button>
+        </form>
+    </div>
+</div>
+
+
+
+<!-- ADD GRAVE Success Message Popup -->
+<div id="addGraveSuccess" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('addGraveSuccess').style.display='none'">&times;</span>
+        <h3 style="color: green;">Success!</h3>
+        <p>Grave Added successfully.</p>
+    </div>
+</div>
+
+
+<!-- ADD GRAVE Failed Message Popup -->
+<div id="addGraveFailed" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('addGraveFailed').style.display='none'">&times;</span>
+        <h3 style="color: red;">Failed!</h3>
+        <p>Grave Already Exist. Please try again.</p>
+    </div>
+</div>
+
+
+
+<!------------------------------------------ DECEASED------------------------------------------>
 
 <!-- Display List of Deceased -->
 <section id="deceased" class="deceased-section" style="display: none;">
@@ -312,48 +355,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <button type="submit" name="update_deceased">Save Changes</button>
 </form>
 
-    </div>
-</div>
-
-
-    <!-- Modal ADD GRAVE -->
-<div id="addGraveModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h3>Add Grave</h3>
-        <form action="" method="POST">
-            <label>Section:</label>
-            <input type="text" name="section" required>
-
-            <label>Block Number:</label>
-            <input type="text" name="block_number" required>
-
-            <label>Lot Number:</label>
-            <input type="text" name="lot_number" required>
-
-            <button type="submit" name="add_grave">Add Grave</button>
-        </form>
-    </div>
-</div>
-
-
-
-<!-- ADD GRAVE Success Message Popup -->
-<div id="addGraveSuccess" class="modal" style="display: none;">
-    <div class="modal-content">
-        <span class="close" onclick="document.getElementById('addGraveSuccess').style.display='none'">&times;</span>
-        <h3 style="color: green;">Success!</h3>
-        <p>Grave Added successfully.</p>
-    </div>
-</div>
-
-
-<!-- ADD GRAVE Failed Message Popup -->
-<div id="addGraveFailed" class="modal" style="display: none;">
-    <div class="modal-content">
-        <span class="close" onclick="document.getElementById('addGraveFailed').style.display='none'">&times;</span>
-        <h3 style="color: red;">Failed!</h3>
-        <p>Grave Already Exist. Please try again.</p>
     </div>
 </div>
 
@@ -492,9 +493,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <p>Error: Only specific file types are allowed.</p>
     </div>
 </div>
-
-
-
 
 </body>
 </html>

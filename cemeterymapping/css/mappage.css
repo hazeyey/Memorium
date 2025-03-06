@@ -580,6 +580,26 @@ header .navbar {
 }
 
 
+/* Tooltip Styling */
+.grave-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1000;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Highlight Available Graves on Hover */
+.grave:hover {
+    box-shadow: 0 0 15px yellow;
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out;
+}
 
 
 
