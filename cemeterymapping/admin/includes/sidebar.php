@@ -30,7 +30,7 @@
 
 
 <li>
-<a href="http://localhost/LAST%20NA%20TO/Memorium/cemeterymapping/homepage.php">
+<a href="../homepage.php">
     <i class='bx bx-transfer-alt'></i>
         <span class="links_name">Website</span>
     </a>

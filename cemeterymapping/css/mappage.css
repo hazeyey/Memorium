@@ -133,6 +133,7 @@ header .navbar {
 .navbar .nav-menu {
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 
 .navbar .nav-menu .nav-link {
