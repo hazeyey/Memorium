@@ -11,13 +11,13 @@ if (isset($_GET['id'])) {
     $result = $conn->query($check);
 
     if ($result->num_rows > 0) {
-        header("Location: index.php?status=deleteGraveFailed"); 
+        header("Location: admin.php?status=deleteGraveFailed"); 
         exit();
     } else {
        
         $sql = "UPDATE graves SET deleted_at = NOW() WHERE grave_id = '$id'";
         if ($conn->query($sql) === TRUE) {
-            header("Location: index.php?status=deleteGraveSuccess"); 
+            header("Location: admin.php?status=deleteGraveSuccess"); 
             exit();
         } else {
             echo "Error: " . $conn->error;

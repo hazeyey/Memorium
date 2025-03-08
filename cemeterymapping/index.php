@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     
-    <link rel="stylesheet" href="css/homepage.css">     
+    <link rel="stylesheet" href="css/style.css">     
     
 </head>
 
@@ -129,15 +129,12 @@
         <div class="footer-content">
             <p>&copy; 2025 Memorium Cemetery Mapping. All rights reserved.</p>
             <p>Developed by <a href="https://github.com/yourprofile" target="_blank">Nazlah Nanding and Hazeljoy Hingpit</a></p>
-            <div class="social-links">
-                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
+            
         </div>
     </footer>
 </main>
 
-<script src="script.js"></script>
+<script src="JSforIndex/script.js"></script>
 
 </body>
 </html>

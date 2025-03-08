@@ -371,20 +371,7 @@ header .navbar {
     text-decoration: underline;
 }
 
-.social-links {
-    margin-top: 10px;
-}
 
-.social-links a {
-    color: var(--secondary-color2);
-    font-size: 18px;
-    margin: 0 8px;
-    transition: 0.3s;
-}
-
-.social-links a:hover {
-    color: white;
-}
 .footer p {
     color: var(--secondary-color2);
     text-decoration: none;

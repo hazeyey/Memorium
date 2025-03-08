@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } 
 
     $status = urlencode($status); 
-    header("Location: index.php?status=$status");
+    header("Location: admin.php?status=$status");
     exit();
 }
 ?>
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Memorium - Admin</title>
     
  
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin-style.css">
 
     <script src="js/sidebar-nav.js" defer></script>
     <script src="js/cemetery.js"></script>

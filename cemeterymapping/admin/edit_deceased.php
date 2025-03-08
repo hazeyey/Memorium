@@ -34,7 +34,7 @@ if (isset($_POST['update_deceased'])) {
             WHERE deceased_id = '$id'";
 
     if ($conn->query($sql) === TRUE) {
-        header("Location: index.php?status=editDeceasedSuccess");  
+        header("Location: admin.php?status=editDeceasedSuccess");  
         exit();
     } else {
         echo "Error: " . $conn->error;

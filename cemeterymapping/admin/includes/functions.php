@@ -167,7 +167,7 @@ function editGrave($conn) {
                 WHERE grave_id = '$id'";   
 
 if ($conn->query($sql) === TRUE) {
-    header("Location: index.php?status=editGraveSuccess");
+    header("Location: admin.php?status=editGraveSuccess");
     exit();
 } else {
     echo "Error: " . $conn->error;

@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
           
             $sql_update_grave = "UPDATE graves SET status = 'available' WHERE grave_id = '$grave_id'";
             if ($conn->query($sql_update_grave) === TRUE) {
-                header("Location: index.php?status=deleteDeceasedSuccess"); 
+                header("Location: admin.php?status=deleteDeceasedSuccess"); 
                 exit();
             } else {
                 echo "Error updating grave status: " . $conn->error;

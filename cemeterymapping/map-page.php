@@ -50,8 +50,8 @@ if ($result->num_rows > 0) {
        
 
     <link rel="stylesheet" href="css/mappage.css">    
-    <script src="searchTable.js" defer></script>
-    <script src="script.js"></script>
+    <script src="JSforIndex/searchTable.js" defer></script>
+    <script src="JSforIndex/script.js" defer></script>
    
    
 
@@ -66,7 +66,7 @@ if ($result->num_rows > 0) {
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
     <nav class="navbar section-content">
-        <a href="homepage.php" class="nav-logo">
+        <a href="index.php" class="nav-logo">
         <img src="css/image/logo.png" alt="Logo" class="logo-icon">
             <h2 class="logo-text">Memorium</h2>
         </a>
@@ -74,17 +74,17 @@ if ($result->num_rows > 0) {
             <button id="menu-close-button" class="fas fa-times"></button>
 
             <li class="nav-item">
-                <a href="homepage.php#home" class="nav-link">Home</a>
+                <a href="index.php#home" class="nav-link">Home</a>
             </li>
             
             <li class="nav-item">
                 <a href="map-page.php" class="nav-link">Map</a>
             </li>
             <li class="nav-item">
-                <a href="homepage.php#about" class="nav-link">About Us</a>
+                <a href="index.php#about" class="nav-link">About Us</a>
             </li>
             <li class="nav-item">
-                <a href="homepage.php#contact" class="nav-link">Contact</a>
+                <a href="index.php#contact" class="nav-link">Contact</a>
             </li>
             <li class="nav-item">
             <a href="admin/admin-login.php" class="nav-link admin-button">
@@ -192,10 +192,7 @@ if ($result->num_rows > 0) {
         <div class="footer-content">
             <p>&copy; 2024 Memorium Cemetery Mapping. All rights reserved.</p>
             <p>Developed by <a href="https://github.com/yourprofile" target="_blank">Nazlah Nanding and Hazeljoy Hingpit</a></p>
-            <div class="social-links">
-                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-        </div>
+            
     </footer>
 
 

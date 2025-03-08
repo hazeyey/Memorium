@@ -30,7 +30,7 @@
 
 
 <li>
-<a href="../homepage.php">
+<a href="../index.php">
     <i class='bx bx-transfer-alt'></i>
         <span class="links_name">Website</span>
     </a>
